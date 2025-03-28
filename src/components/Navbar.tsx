@@ -1,7 +1,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Sprout, MessageCircle, Sun, Menu, X } from "lucide-react";
+import { Sprout, MessageCircle, Sun, Menu, X, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,8 +11,10 @@ const Navbar = () => {
     <nav className="bg-white shadow-sm py-4 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <Sprout className="h-6 w-6 text-agro-green-600" />
-          <span className="text-agro-green-800 font-bold text-xl">AgroConnect</span>
+          <Link to="/" className="flex items-center gap-2">
+            <Sprout className="h-6 w-6 text-agro-green-600" />
+            <span className="text-agro-green-800 font-bold text-xl">AgroConnect</span>
+          </Link>
         </div>
 
         {/* Mobile menu button */}
@@ -32,6 +35,12 @@ const Navbar = () => {
 
         {/* Desktop navigation */}
         <div className="hidden md:flex items-center space-x-4">
+          <Link to="/about">
+            <Button variant="ghost" className="flex items-center gap-2">
+              <Users size={18} />
+              <span>About Us</span>
+            </Button>
+          </Link>
           <Button variant="ghost" className="flex items-center gap-2">
             <Sun size={18} />
             <span>Weather</span>
@@ -48,6 +57,12 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden mt-4 pb-4">
           <div className="flex flex-col space-y-3 pt-2 pb-3">
+            <Link to="/about">
+              <Button variant="ghost" className="flex items-center gap-2 justify-start w-full">
+                <Users size={18} />
+                <span>About Us</span>
+              </Button>
+            </Link>
             <Button variant="ghost" className="flex items-center gap-2 justify-start">
               <Sun size={18} />
               <span>Weather</span>

@@ -1,5 +1,6 @@
 
 import { Sprout, Heart, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -7,10 +8,10 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
+            <Link to="/" className="inline-flex items-center gap-2 mb-4">
               <Sprout className="h-6 w-6 text-agro-green-300" />
               <span className="text-agro-green-100 font-bold text-xl">AgroConnect</span>
-            </div>
+            </Link>
             <p className="text-agro-green-200 mb-6 max-w-md">
               Empowering Kenyan farmers with intelligent, emotionally supportive technology 
               to improve agricultural outcomes and build resilient communities.
@@ -25,8 +26,8 @@ const Footer = () => {
           <div>
             <h3 className="text-agro-green-100 font-medium text-lg mb-4">Quick Links</h3>
             <ul className="space-y-2 text-agro-green-200">
-              <li><a href="#" className="hover:text-white transition-colors">Home</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+              <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
               <li><a href="#" className="hover:text-white transition-colors">Crop Guide</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Market Prices</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Community</a></li>
