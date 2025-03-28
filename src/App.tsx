@@ -10,6 +10,7 @@ import AboutUs from "./pages/AboutUs";
 import NotFound from "./pages/NotFound";
 import CropGuide from "./pages/CropGuide";
 import Community from "./pages/Community";
+import WeatherPage from "./pages/WeatherPage";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/about" element={<AboutUs />} />
           <Route path="/crops" element={<CropGuide />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/weather" element={<WeatherPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

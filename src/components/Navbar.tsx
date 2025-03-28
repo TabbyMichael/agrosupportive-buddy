@@ -67,10 +67,11 @@ const Navbar = () => {
             label="Crop Guide" 
           />
           
-          <Button variant="ghost" className="flex items-center gap-2">
-            <Sun size={18} />
-            <span>Weather</span>
-          </Button>
+          <NavLink 
+            to="/weather" 
+            icon={<Sun size={18} />} 
+            label="Weather" 
+          />
           
           <NavLink 
             to="/community" 
@@ -106,10 +107,15 @@ const Navbar = () => {
               </Button>
             </Link>
             
-            <Button variant="ghost" className="flex items-center gap-2 justify-start">
-              <Sun size={18} />
-              <span>Weather</span>
-            </Button>
+            <Link to="/weather" onClick={() => setIsMenuOpen(false)}>
+              <Button 
+                variant={isActive('/weather') ? "secondary" : "ghost"} 
+                className={`flex items-center gap-2 justify-start w-full ${isActive('/weather') ? 'bg-agro-green-50 text-agro-green-800' : ''}`}
+              >
+                <Sun size={18} />
+                <span>Weather</span>
+              </Button>
+            </Link>
             
             <Link to="/community" onClick={() => setIsMenuOpen(false)}>
               <Button 

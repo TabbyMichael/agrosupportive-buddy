@@ -1,9 +1,10 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Send, Mic, User, Bot, Leaf } from "lucide-react";
+import AIService from "@/services/ai";
 
 type Message = {
   id: number;
@@ -13,6 +14,26 @@ type Message = {
 };
 
 const ChatInterface = () => {
+  const [aiService] = useState(() => new AIService(import.meta.env.VITE_OPENWEATHER_API_KEY));
+  const [location, setLocation] = useState({ latitude: -1.2921, longitude: 36.8219 }); // Default to Nairobi
+  
+  useEffect(() => {
+    // Get user's location if available
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          });
+        },
+        (error) => {
+          console.error('Error getting location:', error);
+        }
+      );
+    }
+  }, []);
+
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -42,30 +63,31 @@ const ChatInterface = () => {
     // Simulate assistant typing
     setIsTyping(true);
     
-    // These would be actual responses from your AI in a real implementation
-    const farmerSupportResponses = [
-      "I see you're concerned about your crops. Based on what you've described, this could be a case of nutrient deficiency. Consider applying a balanced NPK fertilizer and monitor for improvements over the next week.",
-      "That's a great question about maize planting! For optimal results in Kenya, plant your maize at the beginning of the long rains (March-April) or short rains (October-November), depending on your region.",
-      "Your tomato plants showing yellowing leaves might be experiencing either overwatering or a fungal infection. Try reducing watering frequency and ensure good air circulation between plants.",
-      "Based on the current weather forecast for your area, I'd recommend delaying irrigation for the next 2 days as we're expecting significant rainfall. This will help conserve your water resources.",
-      "I understand farming can be challenging. Many farmers in your community have faced similar issues and overcome them. Would you like me to connect you with some local success stories for inspiration?"
-    ];
-    
-    // Randomly select a response for demonstration
-    const randomResponse = farmerSupportResponses[Math.floor(Math.random() * farmerSupportResponses.length)];
-    
-    // Simulate AI response after a delay
-    setTimeout(() => {
-      const assistantMessage: Message = {
-        id: messages.length + 2,
-        text: randomResponse,
-        sender: "assistant",
-        timestamp: new Date(),
-      };
-      
-      setMessages((prev) => [...prev, assistantMessage]);
-      setIsTyping(false);
-    }, 1500);
+    // Get AI response based on user message and location
+    aiService.generateResponse(input, location.latitude, location.longitude)
+      .then(response => {
+        const assistantMessage: Message = {
+          id: messages.length + 2,
+          text: response.text,
+          sender: "assistant",
+          timestamp: new Date(),
+        };
+        
+        setMessages((prev) => [...prev, assistantMessage]);
+        setIsTyping(false);
+      })
+      .catch(error => {
+        console.error('Error getting AI response:', error);
+        const errorMessage: Message = {
+          id: messages.length + 2,
+          text: "I apologize, but I'm having trouble processing your request at the moment. Please try again.",
+          sender: "assistant",
+          timestamp: new Date(),
+        };
+        
+        setMessages((prev) => [...prev, errorMessage]);
+        setIsTyping(false);
+      });
   };
 
   // Handle sending message when Enter key is pressed
