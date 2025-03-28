@@ -28,9 +28,9 @@ const Footer = () => {
             <ul className="space-y-2 text-agro-green-200">
               <li><Link to="/" className="hover:text-white transition-colors">Home</Link></li>
               <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><a href="#" className="hover:text-white transition-colors">Crop Guide</a></li>
+              <li><Link to="/crops" className="hover:text-white transition-colors">Crop Guide</Link></li>
               <li><a href="#" className="hover:text-white transition-colors">Market Prices</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Community</a></li>
+              <li><Link to="/community" className="hover:text-white transition-colors">Community</Link></li>
             </ul>
           </div>
           

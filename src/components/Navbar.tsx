@@ -72,10 +72,11 @@ const Navbar = () => {
             <span>Weather</span>
           </Button>
           
-          <Button variant="ghost" className="flex items-center gap-2">
-            <MessageCircle size={18} />
-            <span>Community</span>
-          </Button>
+          <NavLink 
+            to="/community" 
+            icon={<MessageCircle size={18} />} 
+            label="Community" 
+          />
           
           <Button className="bg-agro-green hover:bg-agro-green-dark text-white">Get Started</Button>
         </div>
@@ -110,10 +111,15 @@ const Navbar = () => {
               <span>Weather</span>
             </Button>
             
-            <Button variant="ghost" className="flex items-center gap-2 justify-start">
-              <MessageCircle size={18} />
-              <span>Community</span>
-            </Button>
+            <Link to="/community" onClick={() => setIsMenuOpen(false)}>
+              <Button 
+                variant={isActive('/community') ? "secondary" : "ghost"} 
+                className={`flex items-center gap-2 justify-start w-full ${isActive('/community') ? 'bg-agro-green-50 text-agro-green-800' : ''}`}
+              >
+                <MessageCircle size={18} />
+                <span>Community</span>
+              </Button>
+            </Link>
             
             <Button className="bg-agro-green hover:bg-agro-green-dark text-white w-full mt-2">
               Get Started
