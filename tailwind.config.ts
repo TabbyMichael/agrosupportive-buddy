@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,37 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// AgroConnect custom colors
+				'agro-green': {
+					DEFAULT: '#2E7D32',
+					light: '#4CAF50',
+					dark: '#1B5E20',
+					50: '#E8F5E9',
+					100: '#C8E6C9',
+					200: '#A5D6A7',
+					300: '#81C784',
+					400: '#66BB6A',
+					500: '#4CAF50',
+					600: '#43A047',
+					700: '#388E3C',
+					800: '#2E7D32',
+					900: '#1B5E20',
+				},
+				'agro-brown': {
+					DEFAULT: '#795548',
+					light: '#A1887F',
+					dark: '#4E342E',
+				},
+				'agro-orange': {
+					DEFAULT: '#FF8F00',
+					light: '#FFA726',
+					dark: '#EF6C00',
+				},
+				'agro-blue': {
+					DEFAULT: '#1976D2',
+					light: '#42A5F5',
+					dark: '#0D47A1',
 				}
 			},
 			borderRadius: {
@@ -84,11 +116,21 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-gentle': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.7' },
+				},
+				'grow-shrink': {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.05)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-gentle': 'pulse-gentle 2s ease-in-out infinite',
+				'grow-shrink': 'grow-shrink 3s ease-in-out infinite',
 			}
 		}
 	},
